@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
+  <script type="text/javascript">
+
+  <!--
+  var entrees = new Array();
+  var celda_anterior = null;
+  var celda_anterior_id = null;
+  var correctas = 0;
+  var c = 0;
+  function mezclar()
+ {
+  var i;
+  var j;
+  var n;
+  var dep = 0;
+  var trouve;
+  for (i = 1; i < 9; i++)
+  {
+   for (j = 0; j < 2; j++) 
+   {
+    n = Math.round(Math.random() * (10 - i));
+    dep += n;
+    dep %= 16;
+    trouve = false;
+    while (!trouve) 
+    {
+     if (!entrees[dep]) 
+     {
+      entrees[dep] = i;
+      trouve = true;
+     }
+     else 
+     {
+      dep++;
+      dep %= 16;
+     }
+    }
+   }
+  }
+ }
+ mezclar();
+  window.onload = function()
+  {
+
+
+   var codigo = '<H1><CENTER>MEMORAMA</CENTER></H1> <center><table border="1"></center><br>';
+   for (var i = 0;i < 4;i++)
+   {
+    codigo += '<tr> ';
+    for (var f = 0;f < 4;f++)
+    {  
+	
+     codigo += '<td style="width:70px;height:70px; text-align:center; background:#ff9900"  class="'+entrees[c]+'" id="celda_'+c+'"><a href="javascript:girar(\'celda_'+c+'\');">Girar</a></td><h1>';
+     c++;
+    }
+    codigo += '</tr>';
+   }
+   codigo += '</table>';
+   document.body.innerHTML = codigo;
+  }
+  function girar(celda)
+  {
+   if (celda_anterior_id != null)
+   {
+    if (celda_anterior == document.getElementById(celda).className)
+    {
+     document.getElementById(celda).innerHTML = 'Muy bien!';
+     document.getElementById(celda_anterior_id).innerHTML = 'Muy bien!';
+     celda_anterior_id = null;
+     celda_anterior = null;
+     correctas++;
+     if (correctas >= (c / 2))
+     {
+      alert("Ganaste el juego!");
+     }
+    }
+    else
+    {
+     document.getElementById(celda).innerHTML = document.getElementById(celda).className;
+     setTimeout(function()
+     {
+      document.getElementById(celda_anterior_id).innerHTML = '<a href="javascript:girar(\''+celda_anterior_id+'\')">Girar</a>';
+      document.getElementById(celda).innerHTML = '<a href="javascript:girar(\''+celda+'\')">Girar</a>';
+      alert("Intenta de nuevo!");
+      celda_anterior_id = null;
+      celda_anterior = null;
+     }, 400); 
+    }
+   }
+   else
+   {
+    celda_anterior = document.getElementById(celda).className;
+    celda_anterior_id = celda;
+    document.getElementById(celda).innerHTML = document.getElementById(celda).className;
+   }
+  }
+  -->
+
+  </script>
+
+  <style type="text/css">
+<!--
+body,td,th {
+	color: #FF6600;
+}
+body {
+	background-color: #000000;
+}
+a:link {
+	color: #000000;
+}
+a:visited {
+	color: #FF6600;
+}
+a:hover {
+	color: #FF6600;
+}
+a:active {
+	color: #FF6600;
+}
+-->
+</style>
+
+<title>Memorama</title></head>
+<body text="#00FFCC">
+holas
+</body>
+
+
+
+</html>
